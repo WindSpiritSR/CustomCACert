@@ -41,6 +41,10 @@ if [ -d /apex/com.android.conscrypt/cacerts ]; then
     CERTS_NUM="$(ls -1 /data/local/tmp/sys-ca-copy | wc -l)"
     if [ "$CERTS_NUM" -gt 10 ]; then
         mount --bind /data/local/tmp/sys-ca-copy /apex/com.android.conscrypt/cacerts
+        for pid in 1 $(pgrep zygote) $(pgrep zygote64); do
+            nsenter --mount=/proc/${pid}/ns/mnt -- \
+                mount --bind /data/local/tmp/sys-ca-copy /apex/com.android.conscrypt/cacerts
+        done
     else
         echo "Cancelling replacing CA storage due to safety"
     fi

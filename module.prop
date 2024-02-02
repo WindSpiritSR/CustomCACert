@@ -1,7 +1,7 @@
 id=customcacert
 name=Custom CA Cert
-version=v1.0
-versionCode=1
+version=v1.1
+versionCode=2
 author=Simon Riley
 description=Adds custom CA certificates to the system trust store. Please Backup your custom cert before update.
 updateJson=https://github.com/WindSpiritSR/CustomCACert/blob/main/update.json
